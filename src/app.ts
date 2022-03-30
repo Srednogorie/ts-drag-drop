@@ -105,13 +105,12 @@ class ProjectList {
         this.element.id = `${this.type}-projects`;
 
         projectState.addListener((projects: Project[]) => {
-            const relevantProjects = projects.filter(prj => {
+            this.assignedProjects = projects.filter(prj => {
                 if (this.type === 'active') {
                     return prj.status === ProjectStatus.Active;
                 }
                 return prj.status === ProjectStatus.Finished;
-            })
-            this.assignedProjects = relevantProjects;
+            });
             this.renderProjects()
         })
 
